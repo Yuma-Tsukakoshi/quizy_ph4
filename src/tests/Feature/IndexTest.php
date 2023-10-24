@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\BigQuestion;
 
 class IndexTest extends TestCase
 {
@@ -13,13 +14,16 @@ class IndexTest extends TestCase
      *
      * @return void
      */
+
     public function testExample()
     {
-        $response = $this->get('/');
+        // ダミーデータの作成
+        factory(BigQuestion::class)->create();
 
+        $value = "東京の難読地名クイズ";
+        $name = BigQuestion::where('name', $value)->first()->name;
+        $response = $this->get('/');
+        $response->assertSee($name);
         $response->assertStatus(200);
     }
-
-    // あってる？
-    // public function factory(BigQuestion::class)->create();
 }

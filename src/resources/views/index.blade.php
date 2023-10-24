@@ -12,7 +12,7 @@
     @foreach($big_questions as $big_question)
         <p>
             <a href="{{ route('quiz.id', ['id'=>$big_question->id]) }}">
-                {{ $big_question->id }}：{{ $big_question->name }}
+                {{ $big_question->id }} : {{ $big_question->name }}
             </a>
         </p>
     @endforeach
