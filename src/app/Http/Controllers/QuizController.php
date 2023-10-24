@@ -2,20 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BigQuestion;
-use App\Models\Question;
+use App\Question;
+use App\Choice;
 
 class QuizController extends Controller
 {
-    public function index()
-    {
-        $questions = Question::all();
-        return view('user.quiz.index', compact('questions'));
-    }
-
-    public function detail($id)
-    {
-        $bigQuestion = BigQuestion::with('questions.choices')->find($id);
-        return view('user.quiz.detail', compact('bigQuestion'));
+    public function index($id) {
+        $questions = Question::where('big_question_id', $id)->get();
+        $choices = Choice::get();
+        return view('quiz.id', compact('questions', 'choices'));
     }
 }
