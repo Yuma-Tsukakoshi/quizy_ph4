@@ -21,5 +21,5 @@ class IndexTest extends TestCase
     }
 
     // あってる？
-    public function factory(BigQuestion::class)->create();
+    // public function factory(BigQuestion::class)->create();
 }
