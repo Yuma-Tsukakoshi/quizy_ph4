@@ -43,11 +43,10 @@ class AdminControllerTest extends TestCase
         }
 
 
-        // DBに存在しないIDが指定されたURLの場合、404を返す
-        $response = $this->post('/admin/edit/99999');
-        $response->assertStatus(302);
-        // 404にするとエラーが起きるなぜか302が返ってくる
-        // $response->assertStatus(404);
+        // DBに存在しないIDが指定されたURLの場合、404を返す↓この行に変更を加える
+        $response = $this->post('/admin/edit/1');
+        // 404にするとエラーが起きる,なぜか302が返ってくる
+        $response->assertStatus(404);
 
 
         // すべての項目が入力必須(必須ではない場合、エラーが出る)
