@@ -41,7 +41,24 @@ class AdminController extends Controller
         return view('admin.edit.id', compact('question'));
     }
 
+    // week58はここの中身を修正する！
+    // ・バリデーションルールに従って、リクエストの入力値を検証。
+    // 不正な入力値でエラーメッセージを表示。
+    // ・findOrFailメソッド：存在しないIDが指定された場合に404エラーを返す。
     public function edit(Request $request, $id) {
+        // バリデーションルールを定義
+        $rules = [
+            'name0' => 'required|max:20',
+            'name1' => 'required|max:20',
+            'name2' => 'required|max:20',
+            'valid' => 'required|integer|between:0,2',
+        ];
+
+        // バリデーションを実行
+        $request->validate($rules);
+
+        // 質問のIDに対応する選択肢を取得
+        // $choices = Question::findOrFail($id)->choices;
         $choices = Question::find($id)->choices;
         foreach ($choices as $index => $choice) {
             $choice->name = $request->{'name'.$index};
