@@ -20,12 +20,13 @@ class IndexTest extends TestCase
     public function testExample()
     {
         // ダミーデータの作成
-        factory(BigQuestion::class)->create();
+        $question = factory(BigQuestion::class)->create();
+        $response = $this->get('/');
+        $response->assertStatus(200);
 
         $value = "東京の難読地名クイズ";
-        $name = BigQuestion::where('name', $value)->first()->name;
-        $response = $this->get('/');
-        $response->assertSee($name);
-        $response->assertStatus(200);
+        // $name = BigQuestion::where('name', $value)->first()->name;
+        $response->assertSeeText($value);
+        $response->assertSee($question->name);
     }
 }

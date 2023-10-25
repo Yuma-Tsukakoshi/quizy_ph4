@@ -58,8 +58,8 @@ class AdminController extends Controller
         $request->validate($rules);
 
         // 質問のIDに対応する選択肢を取得
-        // $choices = Question::findOrFail($id)->choices;
-        $choices = Question::find($id)->choices;
+        $choices = Question::findOrFail($id)->choices;
+        // $choices = Question::find($id)->choices;
         foreach ($choices as $index => $choice) {
             $choice->name = $request->{'name'.$index};
             if ($index === intval($request->valid)) {
