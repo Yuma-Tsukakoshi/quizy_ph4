@@ -69,6 +69,7 @@ class AdminController extends Controller
             }
             $choice->save();
         }
+
         return redirect('/admin');
     }
 
