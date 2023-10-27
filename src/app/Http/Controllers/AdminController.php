@@ -41,9 +41,7 @@ class AdminController extends Controller
         return view('admin.edit.id', compact('question'));
     }
 
-    // week58はここの中身を修正する！
-    // ・バリデーションルールに従って、リクエストの入力値を検証。
-    // 不正な入力値でエラーメッセージを表示。
+    // ・バリデーションルールに従って、リクエストの入力値を検証。不正な入力値でエラーメッセージを表示。
     // ・findOrFailメソッド：存在しないIDが指定された場合に404エラーを返す。
     public function edit(Request $request, $id) {
         // バリデーションルールを定義
